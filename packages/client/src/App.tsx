@@ -17,16 +17,27 @@ async function start() {
 async function logToServer() {
   client.logToServer.mutate("Hi From Client side ")
 }
+
 async function users() {
-  const users = await client.getUser.query()
+  const users = await client.users.get.query({
+    userId: "zxc_zxc",
+  })
   console.log(users)
 }
 
+async function userUpadte() {
+  const users = await client.users.update.mutate({
+    userId: "asd_asd",
+    name: "Kamil",
+  })
+  console.log(users)
+}
 const App = () => (
   <div className="mt-10 text-3xl mx-auto max-w-6xl">
     <div onClick={start}>Hey Hi</div>
     <div onClick={logToServer}>Log to Server</div>
     <div onClick={users}>get users</div>
+    <div onClick={userUpadte}>upadte user</div>
   </div>
 )
 ReactDOM.render(<App />, document.getElementById("app"))

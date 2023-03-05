@@ -19,4 +19,4 @@ export const appRouter = router({
   users: useRouter,
 })
 
-export const mergetRouters = t.mergeRouters(appRouter, useRouter)
+// export const mergetRouters = t.mergeRouters(appRouter, useRouter)
