@@ -2,11 +2,18 @@ import React from "react"
 import ReactDOM from "react-dom"
 
 import "./index.scss"
-import { createTRPCProxyClient, httpBatchLink } from "@trpc/client"
+import { createTRPCProxyClient, httpBatchLink, loggerLink } from "@trpc/client"
 import { AppRouter } from "./../../api-server/index"
 
 const client = createTRPCProxyClient<AppRouter>({
-  links: [httpBatchLink({ url: "http://localhost:8080/trpc" })],
+  links: [
+    loggerLink(),
+    // httpBatchLink -> must be last!
+    httpBatchLink({
+      url: "http://localhost:8080/trpc",
+      headers: { Authorization: "TOKEN" },
+    }),
+  ],
 })
 
 async function start() {
