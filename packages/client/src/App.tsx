@@ -18,7 +18,7 @@ async function logToServer() {
   client.logToServer.mutate("Hi From Client side ")
 }
 async function users() {
-  const users = await client.users.getUser.query()
+  const users = await client.getUser.query()
   console.log(users)
 }
 

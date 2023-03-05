@@ -16,5 +16,7 @@ export const appRouter = router({
       console.log("Client Say:", req.input)
       return true
     }),
-    users: useRouter
+  users: useRouter,
 })
+
+export const mergetRouters = t.mergeRouters(appRouter, useRouter)
