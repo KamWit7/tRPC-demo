@@ -12,10 +12,12 @@ export const useRouter = router({
     .output(z.object({ name: z.string(), id: z.string() }))
     .mutation((req) => {
       console.log(
-        `Update user name to ${req.input.name} and id of a client to ${req.input.userId}`
+        `Update user name to ${req.input.name} and id of a client to ${req.input.userId}`,
+        req.ctx.isAdmin
       )
+
       return { id: req.input.userId, name: req.input.name, password: "x" }
     }),
-  
-// will not pass password x thens to output ^
+
+  // will not pass password x thens to output ^
 })

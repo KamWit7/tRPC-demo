@@ -3,6 +3,7 @@ import * as trpcExpress from "@trpc/server/adapters/express"
 import cors from "cors"
 import { appRouter } from "./routes"
 import { useRouter } from "./routes/users"
+import { createContext } from "./context"
 
 const app = express()
 const port = 8080
@@ -17,6 +18,7 @@ app.use(
   trpcExpress.createExpressMiddleware({
     // router: mergetRouters,
     router: appRouter,
+    createContext: createContext,
   })
 )
 
