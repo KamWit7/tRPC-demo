@@ -9,21 +9,24 @@ const client = createTRPCProxyClient<AppRouter>({
   links: [httpBatchLink({ url: "http://localhost:8080/trpc" })],
 })
 
-function start() {
-  const result = client.sayHi.query()
-  client.sayHi.query()
-  client.sayHi.query()
+async function start() {
+  const result = await client.sayHi.query()
   console.log(result)
 }
 
-function stop() {
+async function logToServer() {
   client.logToServer.mutate("Hi From Client side ")
+}
+async function users() {
+  const users = await client.users.getUser.query()
+  console.log(users)
 }
 
 const App = () => (
   <div className="mt-10 text-3xl mx-auto max-w-6xl">
-    <div onClick={start}>Hi: client</div>
-    <div onClick={stop}>Mutation Hi client</div>
+    <div onClick={start}>Hey Hi</div>
+    <div onClick={logToServer}>Log to Server</div>
+    <div onClick={users}>get users</div>
   </div>
 )
 ReactDOM.render(<App />, document.getElementById("app"))
