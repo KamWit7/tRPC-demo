@@ -32,12 +32,19 @@ async function userUpadte() {
   })
   console.log(users)
 }
+
+async function secretAdmin() {
+  const users = await client.secretData.query()
+  console.log(users)
+}
+
 const App = () => (
   <div className="mt-10 text-3xl mx-auto max-w-6xl">
     <div onClick={start}>Hey Hi</div>
     <div onClick={logToServer}>Log to Server</div>
     <div onClick={users}>get users</div>
     <div onClick={userUpadte}>upadte user</div>
+    <div onClick={secretAdmin}>secret admin login</div>
   </div>
 )
 ReactDOM.render(<App />, document.getElementById("app"))
